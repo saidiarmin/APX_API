@@ -3,8 +3,6 @@ using Common.Exceptions;
 using Common.Utilities;
 using Data;
 using Data.Repositories;
-using ElmahCore.Mvc;
-using ElmahCore.Sql;
 using Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -32,7 +30,7 @@ namespace WebFramework.Configuration
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options
-                    .UseNpgsql(configuration.GetConnectionString("PosgreSQL"))
+                    .UseNpgsql(configuration.GetConnectionString("PostgreSQL"))
                     //Tips
                     .ConfigureWarnings(warning => warning.Throw(RelationalEventId.QueryClientEvaluationWarning));
             });
@@ -61,21 +59,7 @@ namespace WebFramework.Configuration
                 options.Formatting = Newtonsoft.Json.Formatting.Indented;
                 options.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             }*/)
-            .AddCors()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-        }
-
-        public static void AddElmah(this IServiceCollection services, IConfiguration configuration, SiteSettings siteSetting)
-        {
-            services.AddElmah<SqlErrorLog>(options =>
-            {
-                options.Path = siteSetting.ElmahPath;
-                options.ConnectionString = configuration.GetConnectionString("Elmah");
-                //options.CheckPermissionAction = httpContext =>
-                //{
-                //    return httpContext.User.Identity.IsAuthenticated;
-                //};
-            });
         }
 
         public static void AddJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)

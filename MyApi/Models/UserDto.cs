@@ -35,7 +35,7 @@ namespace MyApi.Models
                 yield return new ValidationResult("Username cannot be 'Test'", new[] { nameof(UserName) });
             if (Password.Equals("123456"))
                 yield return new ValidationResult("Password cannot be '123456'", new[] { nameof(Password) });
-            if (Age > 20)
+            if (Age <= 20)
                 yield return new ValidationResult("User should be older than 20 years old", new[] { nameof(Gender), nameof(Age) });
         }
     }

@@ -16,9 +16,6 @@ namespace MyApi
     {
         public static void Main(string[] args)
         {
-            //Set deafult proxy
-            WebRequest.DefaultWebProxy = new WebProxy("http://127.0.0.1:8118", true) { UseDefaultCredentials = true };
-
             var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {

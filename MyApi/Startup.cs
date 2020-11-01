@@ -1,6 +1,5 @@
 ﻿using System;
 using Common;
-using ElmahCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,8 +36,6 @@ namespace MyApi
 
             services.AddMinimalMvc();
 
-            services.AddElmah(Configuration, _siteSetting);
-
             services.AddJwtAuthentication(_siteSetting.JwtSettings);
 
             services.AddCustomApiVersioning();
@@ -56,8 +53,6 @@ namespace MyApi
             app.UseCustomExceptionHandler();
 
             app.UseHsts(env);
-
-            app.UseElmah();
 
             app.UseHttpsRedirection();
 

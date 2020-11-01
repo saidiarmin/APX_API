@@ -1,6 +1,5 @@
 ﻿using Common.Exceptions;
 using Data.Repositories;
-using ElmahCore;
 using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -88,7 +87,6 @@ namespace MyApi.Controllers.v1
         public virtual async Task<ApiResult<User>> Create(UserDto userDto, CancellationToken cancellationToken)
         {
             logger.LogError("Create Method Called");
-            HttpContext.RiseError(new Exception("Create Method Called"));
 
             var user = new User
             {
